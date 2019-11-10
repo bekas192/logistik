@@ -5,17 +5,18 @@
  */
 package com.projectlogistik.logistik.service;
 
-import com.projectlogistik.logistik.model.Barang;
+import com.projectlogistik.logistik.model.Konsumen;
 import java.util.List;
 
 /**
  *
- * @author arrif
+ * @author 300
  */
-public interface BarangService {
-    
-    List<Barang> listBarang();
-    Barang saveOrUpdate(Barang barang);
-    Barang getIdBarang(Integer id);
+
+public interface KonsumenService {
+    List<Konsumen> listKonsumen();
+    Konsumen saveOrUpdate(Konsumen konsumen);
+    Konsumen getIdKonsumen(Integer id);
     void hapus (Integer id);
+    
 }

@@ -5,8 +5,8 @@
  */
 package com.projectlogistik.logistik.dao;
 
-import com.projectlogistik.logistik.model.Barang;
-import com.projectlogistik.logistik.service.BarangService;
+import com.projectlogistik.logistik.model.Konsumen;
+import com.projectlogistik.logistik.service.KonsumenService;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -15,49 +15,44 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author arrif
+ * @author 300
  */
 @Service
-public class BarangDao implements BarangService{
-
+public class KonsumenDao implements KonsumenService{
     private EntityManagerFactory emf;
-
-    @Autowired
+     @Autowired
     public void setEmf(EntityManagerFactory emf) {
         this.emf = emf;
     }
-    
-    
+
     @Override
-    public List<Barang> listBarang() {
+    public List<Konsumen> listKonsumen() {
     EntityManager em = emf.createEntityManager();
-        
-        return em.createQuery("from Barang", Barang.class).getResultList();    }
-    
-    
+        return em.createQuery("from Konsumen", Konsumen.class).getResultList();
+    }
+
     @Override
-    public Barang saveOrUpdate(Barang barang) {
-        
+    public Konsumen saveOrUpdate(Konsumen konsumen) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        Barang saved = em.merge(barang);
+        Konsumen saved = em.merge(konsumen);
         em.getTransaction().commit();
-        
+
         return saved;
     }
 
     @Override
-    public Barang getIdBarang(Integer id) {
+    public Konsumen getIdKonsumen(Integer id) {
         EntityManager em = emf.createEntityManager();
-        return em.find(Barang.class, id);
-        
+        return em.find(Konsumen.class,id);
     }
 
     @Override
     public void hapus(Integer id) {
-        EntityManager em = emf.createEntityManager();
+         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        em.remove(em.find(Barang.class, id));
+        em.remove(em.find(Konsumen.class , id));
         em.getTransaction().commit();
     }
+    
 }
