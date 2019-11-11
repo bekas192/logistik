@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author 300
  */
-@RequestMapping("/sevlog/konsumen")
+@RequestMapping("/konsumen")
 @RestController
 public class KonsumenController {
     private KonsumenService konsumenService;
