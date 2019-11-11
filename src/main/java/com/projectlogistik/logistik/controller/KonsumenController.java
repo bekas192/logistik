@@ -48,13 +48,12 @@ public class KonsumenController {
     public String editDataBarang(@PathVariable Integer id, @RequestBody Konsumen konsumen){
         Konsumen kns = konsumenService.getIdKonsumen(id);
         
-        kns.setNo_faktur(konsumen.getNo_faktur());
-        kns.setTanggal_faktur(konsumen.getTanggal_faktur()); 
+        
         kns.setNama(konsumen.getNama());
         kns.setTelepon(konsumen.getTelepon());
         kns.setAlamat(konsumen.getAlamat());
         kns.setKeterangan(konsumen.getKeterangan());
-        kns.setTanggal_batal(konsumen.getTanggal_batal());
+        
         
         konsumenService.saveOrUpdate(kns);
         return "SUCCESS";
