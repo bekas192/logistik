@@ -5,8 +5,10 @@
  */
 package com.projectlogistik.logistik.controller;
 
-import com.projectlogistik.logistik.model.Barang;
-import com.projectlogistik.logistik.service.BarangService;
+
+import com.projectlogistik.logistik.model.KendaraanMuatan;
+
+import com.projectlogistik.logistik.service.KendaraanMuatanService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -19,51 +21,51 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
- * @author arrif
+ * @author 300
  */
-@RequestMapping("/barang")
+@RequestMapping("/muatan")
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-public class BarangController {
+public class KendaraanMuatanController {
     
-    private BarangService barangService;
+    private KendaraanMuatanService kendaraanMuatanService;
     
     @Autowired
-     public void setBarangService(BarangService barangService) {
-        this.barangService = barangService;
+     public void setKendaraanMuatanService(KendaraanMuatanService kendaraanMuatanService) {
+        this.kendaraanMuatanService = kendaraanMuatanService;
     }
     
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Barang> BarangList(){
+    public List<KendaraanMuatan> KendaraanList(){
         
-        return barangService.listBarang();
+        return kendaraanMuatanService.listKendaraan();
     }
     
 
     
     @RequestMapping(value = "/create", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public String simpanDataBarang(@RequestBody Barang barang){
-        barangService.saveOrUpdate(barang);
+    public String simpanDataKendaraanMuatan(@RequestBody KendaraanMuatan kendaraanMuatan){
+        kendaraanMuatanService.saveOrUpdate(kendaraanMuatan);
         return "SUCCESS";
     }
     
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.PUT, produces = MediaType.TEXT_PLAIN_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public String editDataBarang(@PathVariable Integer id, @RequestBody Barang barang){
-        Barang brg = barangService.getIdBarang(id);
+    public String editDataKendaraanMuatan(@PathVariable Integer id, @RequestBody KendaraanMuatan kendaraanMuatan){
+        KendaraanMuatan km = kendaraanMuatanService.getIdKendaraanMuatan(id);
         
-        brg.setNamaBarang(barang.getNamaBarang());
-        brg.setHargaBeli(barang.getHargaBeli()); 
-        brg.setHargaJual(barang.getHargaJual());
-        brg.setSatuan(barang.getSatuan());
+        km.setJenisAngkutan(kendaraanMuatan.getJenisAngkutan());
+        km.setKapasitasMuatan(kendaraanMuatan.getKapasitasMuatan()); 
+        km.setMerkAngkutan(kendaraanMuatan.getMerkAngkutan());
+        km.setKeterangan(kendaraanMuatan.getKeterangan());
         
-        barangService.saveOrUpdate(brg);
+        kendaraanMuatanService.saveOrUpdate(km);
         return "SUCCESS";
 
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = MediaType.TEXT_PLAIN_VALUE)
     public String hapusDataBarang(@PathVariable Integer id){
-        barangService.hapus(id);
+        kendaraanMuatanService.hapus(id);
         return "SUCCESS";
     }
 }

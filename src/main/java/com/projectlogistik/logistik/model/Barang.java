@@ -30,7 +30,7 @@ public class Barang {
    
    @Column (name = "harga_beli")
    private Integer hargaBeli;
-   private String Satuan;
+   private String satuan;
 
     public Integer getId() {
         return id;
@@ -65,12 +65,14 @@ public class Barang {
     }
 
     public String getSatuan() {
-        return Satuan;
+        return satuan;
     }
 
-    public void setSatuan(String Satuan) {
-        this.Satuan = Satuan;
+    public void setSatuan(String satuan) {
+        this.satuan = satuan;
     }
+
+   
    
    
    
